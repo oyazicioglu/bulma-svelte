@@ -43,8 +43,6 @@
 	/** @type {CallableFunction}*/
 	export let action = undefined;
 
-	console.log(isLoading);
-
 	if (isInverted) {
 		isOutlined = false;
 	}

@@ -1,7 +1,7 @@
 {
 	"name": "bulma-svelte",
 	"description": "Svelte integration of Bulma css framework",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"main": "src/index.js",
 	"scripts": {
 		"build": "rollup -c",

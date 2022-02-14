@@ -19,11 +19,12 @@ $widescreen-enabled: false;
 $body-background-color: #fafafa;
 $control-border-width: 2px;
 $input-border-color: transparent;
+$fullhd-enabled: true;
 $input-shadow: none;
 */
 
-$primary: #4282d6;
-$fullhd-enabled: true;
+$qei-primary: #4282d6 !default;
+$primary: $qei-primary;
 
 @import 'bulma/sass/utilities/_all.sass';
 @import 'bulma/sass/helpers/_all.sass';

@@ -1,5 +1,6 @@
 {
-	"name": "svelte-app",
+	"name": "bulma-svelte",
+	"description": "Svelte integration of Bulma css framework",
 	"version": "1.0.0",
 	"main": "src/index.js",
 	"scripts": {

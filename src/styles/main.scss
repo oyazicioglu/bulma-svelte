@@ -25,14 +25,14 @@ $input-shadow: none;
 $primary: #4282d6;
 $fullhd-enabled: true;
 
-@import 'bulma/sass/utilities/_all.sass';
-@import 'bulma/sass/helpers/_all.sass';
-@import 'bulma/sass/base/_all.sass';
-@import 'bulma/sass/grid/_all.sass';
-@import 'bulma/sass/layout/_all.sass';
-@import 'bulma/sass/form/_all.sass';
-@import 'bulma/sass/components/_all.sass';
-@import 'bulma/sass/elements/_all.sass';
+@import '../../node_modules/bulma/sass/utilities/_all.sass';
+@import '../../node_modules/bulma/sass/helpers/_all.sass';
+@import '../../node_modules/bulma/sass/base/_all.sass';
+@import '../../node_modules/bulma/sass/grid/_all.sass';
+@import '../../node_modules/bulma/sass/layout/_all.sass';
+@import '../../node_modules/bulma/sass/form/_all.sass';
+@import '../../node_modules/bulma/sass/components/_all.sass';
+@import '../../node_modules/bulma/sass/elements/_all.sass';
 
 :root {
 	font-size: 14px;

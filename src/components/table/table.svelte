@@ -29,6 +29,6 @@
 	$: styles = [$$restProps.style].filter(Boolean).join(';');
 </script>
 
-<div {...$$restProps} class={classes} style={styles}>
+<table {...$$restProps} class={classes} style={styles}>
 	<slot />
-</div>
+</table>

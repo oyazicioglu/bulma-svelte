@@ -22,11 +22,11 @@
 				}
 			}} />
 	{/if}
-	<slot />
+	<slot style="z-index:1" />
 	<button
 		on:click={() => {
 			isActive = false;
 		}}
-		class="modal-close"
+		class="modal-close is-medium"
 		aria-label="close" />
 </div>

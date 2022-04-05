@@ -1,23 +1,22 @@
 <script>
-	import '../index.d.js';
-	import Delete from '../delete/delete.svelte';
+  import Delete from '../delete/delete.svelte';
 
-	/** @type { BulmaColor } */
-	export let color = undefined;
+  /** @type { BulmaColor } */
+  export let color = undefined;
 
-	/** @type {string}*/
-	export let textContent = '';
+  /** @type {string}*/
+  export let textContent = '';
 
-	/** @type {boolean}*/
-	export let isLight = false;
+  /** @type {boolean}*/
+  export let isLight = false;
 
-	$: classes = [`notification`, color, isLight && `is-light`, $$restProps.class].filter(Boolean).join(' ');
+  $: classes = [`notification`, color, isLight && `is-light`, $$restProps.class].filter(Boolean).join(' ');
 
-	$: styles = [$$restProps.style].filter(Boolean).join(';');
+  $: styles = [$$restProps.style].filter(Boolean).join(';');
 </script>
 
 <div {...$$restProps} class={classes} style={styles}>
-	<Delete on:click />
-	{@html textContent}
-	<slot />
+  <Delete on:click />
+  {@html textContent}
+  <slot />
 </div>

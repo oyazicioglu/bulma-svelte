@@ -71,3 +71,4 @@ export { default as TabItem } from './components/tabs/tab-item.svelte';
 export { default as Tags } from './components/tag/tags.svelte';
 export { default as Tag } from './components/tag/tag.svelte';
 export { default as Title } from './components/title/title.svelte';
+export { default as Anchor } from './components/anchor/anchor.svelte';

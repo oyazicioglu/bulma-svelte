@@ -1,16 +1,16 @@
 <script>
-	import '../../index.d.js';
+  import '../../';
 
-	/** @type { BulmaColor } */
-	export let color = undefined;
+  /** @type { BulmaColor } */
+  export let color = undefined;
 
-	/** @type { BulmaHeroSize } */
-	export let size = undefined;
+  /** @type { BulmaHeroSize } */
+  export let size = undefined;
 
-	$: classes = [`hero`, color, size, $$restProps.class].filter(Boolean).join(' ');
-	$: styles = [$$restProps.style].filter(Boolean).join(';');
+  $: classes = [`hero`, color, size, $$restProps.class].filter(Boolean).join(' ');
+  $: styles = [$$restProps.style].filter(Boolean).join(';');
 </script>
 
 <div {...$$restProps} class={classes} style={styles}>
-	<slot />
+  <slot />
 </div>

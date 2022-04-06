@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type { BulmaTextColor } */
   export let color = undefined;
 

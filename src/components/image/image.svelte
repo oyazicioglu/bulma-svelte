@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type { BulmaImageRatio } */
   export let ratio = undefined;
 

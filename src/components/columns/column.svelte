@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type {BulmaColumnSize}*/
   export let size = undefined;
 

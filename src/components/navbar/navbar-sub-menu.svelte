@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type {BulmaNavbarSubmenuside}*/
   export let side = 'navbar-start';
 

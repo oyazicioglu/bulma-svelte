@@ -1,5 +1,5 @@
 <script>
-  import '../../';
+  import '../../index.d.js';
 
   /** @type { BulmaTileContextModifier } */
   export let contextModifier = 'is-ancestor';

@@ -2,6 +2,7 @@
   import { IdCreator } from '../id-creator';
   import FormControl from './form-control.svelte';
   import FormField from './form-field.svelte';
+  import '../index.d.js';
 
   /** @type { BulmaColor } */
   export let color = undefined;

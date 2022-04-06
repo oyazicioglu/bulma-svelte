@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type { BulmaTabAlign } */
   export let align = undefined;
 

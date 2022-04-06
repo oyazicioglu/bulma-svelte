@@ -2,8 +2,10 @@
   /** @type { string } */
   export let href = undefined;
 
+  /** @type {Boolean}*/
   export let isDivider = false;
 
+  /** @type {Boolean}*/
   export let asLink = true;
 
   /**@type { CallableFunction }*/

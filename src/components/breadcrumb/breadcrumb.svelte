@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type { BulmaBreadcrumbItem[] } */
   export let items = [];
 

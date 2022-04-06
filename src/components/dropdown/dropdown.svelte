@@ -1,7 +1,9 @@
 <script>
   import { hideOnClickOutside } from '../hideOnClickOutside';
   import Icon from '../icon/icon.svelte';
+  import '../index.d.js';
 
+  /** @type {boolean}*/
   export let isActive = false;
 
   /** @type { BulmaSize } */

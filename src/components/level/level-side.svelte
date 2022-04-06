@@ -1,4 +1,6 @@
 <script>
+  import '../index.d.js';
+
   /** @type { BulmaLevelSide } */
   export let side = 'level-left';
 

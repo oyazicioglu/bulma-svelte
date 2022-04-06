@@ -1,5 +1,6 @@
 <script>
   import NavbarBurger from './navbar-burger.svelte';
+  import '../index.d.js';
 
   /** @type {string}*/
   export let href = '/';

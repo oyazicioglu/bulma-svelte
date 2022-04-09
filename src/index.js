@@ -86,3 +86,4 @@ export { MinValueValidation } from './components/form/validations/MinValueValida
 export { MaxValueValidation } from './components/form/validations/MaxValueValidation.js';
 export { RequiredValidation } from './components/form/validations/RequiredValidation.js';
 export { MatchValuesValidation } from './components/form/validations/MatchValuesValidation.js';
+export { default as Flexbox } from './components/flexbox/flexbox.svelte';

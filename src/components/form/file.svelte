@@ -1,6 +1,5 @@
 <script>
   import '../index.d.js';
-
   import Icon from '../icon/icon.svelte';
 
   /** @type {string}*/

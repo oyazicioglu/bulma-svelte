@@ -1,8 +1,13 @@
 <script>
+  import '../index.d.js';
+
+  import { getContext, onMount } from 'svelte';
   import { IdCreator } from '../id-creator';
   import FormControl from './form-control.svelte';
   import FormField from './form-field.svelte';
-  import '../index.d.js';
+  import { formContext } from './form.svelte';
+  import { FormElement } from './FormElement.js';
+  import { ValidationDirective } from './validations/ValidationDirective.js';
 
   /** @type { BulmaColor } */
   export let color = undefined;
@@ -37,8 +42,57 @@
   /** @type {boolean}*/
   export let isLoading = false;
 
+  export let validations = [];
+
+  export let valid = true;
+
+  export let name = 'input';
+
+  export let validationsResult = undefined;
+
+  /** @type { HTMLInputElement }*/
+  let input = undefined;
+
   /** @type {string}*/
   const id = IdCreator.create();
+
+  let element = undefined;
+  let loaded = false;
+
+  const validationDirective = new ValidationDirective();
+  validations = validationDirective.createValidationsFromProps($$restProps, ...validations);
+
+  const context = getContext(formContext);
+
+  onMount(async () => {
+    element = new FormElement(input, $$restProps.type, name, label ? label : name, value, validations);
+
+    if (context) {
+      context.registerElement(element);
+    }
+
+    loaded = true;
+  });
+
+  const onValidate = (e) => {
+    validationsResult = e.detail;
+    valid = validationsResult.isValid;
+
+    if (context) {
+      context.checkFormValidation();
+    }
+  };
+
+  const updateValue = () => {
+    if (!element) {
+      return;
+    }
+
+    element.setValue(value);
+    valid = element.isValid();
+
+    validationDirective.validation(input, { element, loaded });
+  };
 
   $: classes = [`input`, size, color, state, isRounded && `is-rounded`, isStatic && `is-static`, $$restProps.class]
     .filter(Boolean)
@@ -51,9 +105,28 @@
     <label for={id} class="label">{label}</label>
   {/if}
   <FormControl {size} {leftIconName} {rightIconName} {isLoading}>
-    <input {id} bind:value {...$$restProps} class={classes} style={styles} />
+    <input
+      bind:this={input}
+      use:validationDirective.validation={{ element, loaded }}
+      {id}
+      bind:value
+      on:input={updateValue}
+      on:blur={updateValue}
+      on:validate={onValidate}
+      on:click
+      on:focus
+      {...$$restProps}
+      class={classes}
+      class:is-danger={!valid}
+      style={styles} />
   </FormControl>
-  {#if helpText}
+  {#if helpText & valid}
     <p class="help">{helpText}</p>
+  {/if}
+
+  {#if !valid && validationsResult && validationsResult.errors.length > 0}
+    {#each validationsResult.errors as error}
+      <p class="help is-danger">{error.message}</p>
+    {/each}
   {/if}
 </FormField>

@@ -14,6 +14,9 @@
 	/** @type {boolean}*/
 	export let isFullWidth = true;
 
+	/** @type {HTMLElement}*/
+	export let ref = undefined;
+
 	$: classes = [
 		`table`,
 		isBordered && `is-bordered`,
@@ -29,6 +32,6 @@
 	$: styles = [$$restProps.style].filter(Boolean).join(';');
 </script>
 
-<table {...$$restProps} class={classes} style={styles}>
+<table bind:this={ref} {...$$restProps} class={classes} style={styles}>
 	<slot />
 </table>

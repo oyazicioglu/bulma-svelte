@@ -45,6 +45,10 @@
  */
 
 /**
+ * @typedef {'is-normal' | 'is-medium' | 'is-large'} BulmaSectionSize
+ */
+
+/**
  * @typedef {'is-hovered' | 'is-focused' | 'is-active'} BulmaButtonState
  */
 

@@ -8,6 +8,6 @@
     $: styles = [width && `width:${width}`, $$restProps.style].filter(Boolean).join(';');
 </script>
 
-<th {...$$restProps} class={classes} style={styles}>
+<th on:click {...$$restProps} class={classes} style={styles}>
     <slot />
 </th>

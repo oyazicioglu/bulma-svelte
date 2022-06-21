@@ -1,132 +1,148 @@
 <script>
-  import '../index.d.js';
+    import '../index.d.js';
 
-  import { getContext, onMount } from 'svelte';
-  import { IdCreator } from '../id-creator';
-  import FormControl from './form-control.svelte';
-  import FormField from './form-field.svelte';
-  import { formContext } from './form.svelte';
-  import { FormElement } from './FormElement.js';
-  import { ValidationDirective } from './validations/ValidationDirective.js';
+    import { getContext, onMount } from 'svelte';
+    import { IdCreator } from '../id-creator';
+    import FormControl from './form-control.svelte';
+    import FormField from './form-field.svelte';
+    import { formContext } from './form.svelte';
+    import { FormElement } from './FormElement.js';
+    import { ValidationDirective } from './validations/ValidationDirective.js';
 
-  /** @type { BulmaColor } */
-  export let color = undefined;
+    /** @type { BulmaColor } */
+    export let color = undefined;
 
-  /** @type { BulmaSize } */
-  export let size = 'is-normal';
+    /** @type { BulmaSize } */
+    export let size = 'is-normal';
 
-  /** @type { BulmaInputState } */
-  export let state = undefined;
+    /** @type { BulmaInputState } */
+    export let state = undefined;
 
-  /** @type {string}*/
-  export let label = undefined;
+    /** @type {string}*/
+    export let label = undefined;
 
-  /** @type {string}*/
-  export let helpText = undefined;
+    /** @type {string}*/
+    export let helpText = undefined;
 
-  /** @type {boolean}*/
-  export let isRounded = false;
+    /** @type {boolean}*/
+    export let isRounded = false;
 
-  /** @type {boolean}*/
-  export let isStatic = false;
+    /** @type {boolean}*/
+    export let isStatic = false;
 
-  /** @type {string}*/
-  export let value = undefined;
+    /** @type {string}*/
+    export let value = undefined;
 
-  /** @type {string}*/
-  export let leftIconName = undefined;
+    /** @type {string}*/
+    export let leftIconName = undefined;
 
-  /** @type {string}*/
-  export let rightIconName = undefined;
+    /** @type {string}*/
+    export let rightIconName = undefined;
 
-  /** @type {boolean}*/
-  export let isLoading = false;
+    /** @type {boolean}*/
+    export let isLoading = false;
 
-  export let validations = [];
+    export let validations = [];
 
-  export let valid = true;
+    export let valid = true;
 
-  export let name = 'input';
+    export let name = 'input';
 
-  export let validationsResult = undefined;
+    export let validationsResult = undefined;
 
-  /** @type { HTMLInputElement }*/
-  let input = undefined;
+    /** @type {boolean}*/
+    export let hasAddons = false;
 
-  /** @type {string}*/
-  const id = IdCreator.create();
+    /** @type {boolean}*/
+    export let isGrouped = false;
 
-  let element = undefined;
-  let loaded = false;
+    /** @type {BulmaFieldGroupAlign}*/
+    export let groupAlign = undefined;
 
-  const validationDirective = new ValidationDirective();
-  validations = validationDirective.createValidationsFromProps($$restProps, ...validations);
+    /** @type {boolean}*/
+    export let isHorizontal = false;
 
-  const context = getContext(formContext);
+    /** @type {boolean}*/
+    export let isExpended = false;
 
-  onMount(async () => {
-    element = new FormElement(input, $$restProps.type, name, label ? label : name, value, validations);
+    /** @type { HTMLInputElement }*/
+    let input = undefined;
 
-    if (context) {
-      context.registerElement(element);
-    }
+    /** @type {string}*/
+    const id = IdCreator.create();
 
-    loaded = true;
-  });
+    let element = undefined;
+    let loaded = false;
 
-  const onValidate = (e) => {
-    validationsResult = e.detail;
-    valid = validationsResult.isValid;
+    const validationDirective = new ValidationDirective();
+    validations = validationDirective.createValidationsFromProps($$restProps, ...validations);
 
-    if (context) {
-      context.checkFormValidation();
-    }
-  };
+    const context = getContext(formContext);
 
-  const updateValue = () => {
-    if (!element) {
-      return;
-    }
+    onMount(async () => {
+        element = new FormElement(input, $$restProps.type, name, label ? label : name, value, validations);
 
-    element.setValue(value);
-    valid = element.isValid();
+        if (context) {
+            context.registerElement(element);
+        }
 
-    validationDirective.validation(input, { element, loaded });
-  };
+        loaded = true;
+    });
 
-  $: classes = [`input`, size, color, state, isRounded && `is-rounded`, isStatic && `is-static`, $$restProps.class]
-    .filter(Boolean)
-    .join(' ');
-  $: styles = [$$restProps.style].filter(Boolean).join(';');
+    const onValidate = (e) => {
+        validationsResult = e.detail;
+        valid = validationsResult.isValid;
+
+        if (context) {
+            context.checkFormValidation();
+        }
+    };
+
+    const updateValue = () => {
+        if (!element) {
+            return;
+        }
+
+        element.setValue(value);
+        valid = element.isValid();
+
+        validationDirective.validation(input, { element, loaded });
+    };
+
+    $: classes = [`input`, size, color, state, isRounded && `is-rounded`, isStatic && `is-static`, $$restProps.class]
+        .filter(Boolean)
+        .join(' ');
+    $: styles = [$$restProps.style].filter(Boolean).join(';');
 </script>
 
-<FormField>
-  {#if label}
-    <label for={id} class="label">{label}</label>
-  {/if}
-  <FormControl {size} {leftIconName} {rightIconName} {isLoading}>
-    <input
-      bind:this={input}
-      use:validationDirective.validation={{ element, loaded }}
-      {id}
-      bind:value
-      on:input={updateValue}
-      on:blur={updateValue}
-      on:validate={onValidate}
-      on:click
-      on:focus
-      {...$$restProps}
-      class={classes}
-      class:is-danger={!valid}
-      style={styles} />
-  </FormControl>
-  {#if helpText & valid}
-    <p class="help">{helpText}</p>
-  {/if}
+<FormField {hasAddons} {isGrouped} {isHorizontal} {groupAlign}>
+    {#if label}
+        <label for={id} class="label">{label}</label>
+    {/if}
+    <FormControl {isExpended} {size} {leftIconName} {rightIconName} {isLoading}>
+        <input
+            bind:this={input}
+            use:validationDirective.validation={{ element, loaded }}
+            {id}
+            bind:value
+            on:input={updateValue}
+            on:blur={updateValue}
+            on:validate={onValidate}
+            on:click
+            on:focus
+            {...$$restProps}
+            class={classes}
+            class:is-danger={!valid}
+            style={styles} />
+    </FormControl>
+    <slot />
+    {#if helpText & valid}
+        <p class="help">{helpText}</p>
+    {/if}
 
-  {#if !valid && validationsResult && validationsResult.errors.length > 0}
-    {#each validationsResult.errors as error}
-      <p class="help is-danger">{error.message}</p>
-    {/each}
-  {/if}
+    {#if !valid && validationsResult && validationsResult.errors.length > 0}
+        {#each validationsResult.errors as error}
+            <p class="help is-danger">{error.message}</p>
+        {/each}
+    {/if}
 </FormField>

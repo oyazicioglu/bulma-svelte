@@ -130,6 +130,7 @@
             on:validate={onValidate}
             on:click
             on:focus
+            on:keypress
             {...$$restProps}
             class={classes}
             class:is-danger={!valid}

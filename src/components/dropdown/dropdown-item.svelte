@@ -28,14 +28,13 @@
         style={styles}
         on:click
         on:click={() => {
-            action();
+            if (action) {
+                action();
+            }
         }}>
         <slot />
     </div>
 {/if}
 
 <style>
-    .dropdown-item {
-        cursor: pointer;
-    }
 </style>
